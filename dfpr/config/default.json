@@ -1,0 +1,96 @@
+{
+  "city": {
+    "seed": 2026,
+    "map_file": null,
+    "grid_size": 25,
+    "spacing_m": 200,
+    "local_speed_kmh": 30,
+    "arterial_speed_kmh": 50,
+    "num_arterials": 3,
+    "edge_removal_frac": 0.05,
+    "num_restaurants": 40,
+    "prep_mean_min_range": [8, 20],
+    "num_customer_clusters": 4,
+    "cluster_sigma_m": 600,
+    "cluster_frac": 0.7
+  },
+  "traffic": {
+    "step_minutes": 15,
+    "tod_profile": [[0, 1.0], [11, 1.0], [12.5, 1.35], [14, 1.05], [17, 1.05], [19.5, 1.45], [21.5, 1.05], [24, 1.0]],
+    "incident_rate_per_hour": 1.5,
+    "incident_radius_m": 700,
+    "incident_factor_range": [1.5, 2.5],
+    "incident_duration_min_range": [10, 30]
+  },
+  "routing": {
+    "algorithm": "astar"
+  },
+  "sim": {
+    "start_hour": 10,
+    "end_hour": 22,
+    "drain_minutes": 120
+  },
+  "demand": {
+    "base_rate_per_hour": 40,
+    "scenarios": {
+      "normal": {"peaks": []},
+      "peak": {"peaks": [[12, 14, 2.5], [19, 21, 2.5]]}
+    },
+    "est_prep_spread": 0.15,
+    "prep_noise_sigma": 0.3,
+    "deadline_window_min": [35, 45]
+  },
+  "riders": {
+    "count": 18,
+    "capacity": 1
+  },
+  "dfpr": {
+    "weights": {"u": 1.0, "f": 1.0, "w": 1.0, "d": 1.0, "c": 1.0, "r": 1.0},
+    "weights_file": null,
+    "normalization": {
+      "urgency_horizon_min": 45,
+      "readiness_window_min": 10,
+      "wait_horizon_min": 30,
+      "delay_max_min": 10,
+      "rider_wait_max_min": 15
+    }
+  },
+  "metrics": {
+    "peak_windows": [[12, 14], [19, 21]]
+  },
+  "experiments": {
+    "results_dir": "results",
+    "workers": null,
+    "dev_seeds": [0, 10],
+    "test_seeds": [100, 130],
+    "scenarios": ["normal", "peak"],
+    "tuning": {
+      "n_random": 40,
+      "n_refine": 20,
+      "refine_top": 4,
+      "refine_sigma": 0.35,
+      "weight_range": [0.0, 3.0],
+      "rng_seed": 7,
+      "objective": {"late_pct": 1.0, "avg_delivery_min": 1.0}
+    },
+    "compare": {
+      "methods": ["dfpr", "static_priority", "nearest", "shortest_path", "nearest_time", "fifo", "dfpr_untuned"],
+      "baselines": ["static_priority", "nearest", "shortest_path", "nearest_time"]
+    },
+    "scaling": {
+      "methods": ["dfpr", "static_priority", "nearest", "shortest_path"],
+      "orders": [10, 25, 50, 100, 200, 400, 800],
+      "riders": [2, 5, 10, 20, 40, 80, 160],
+      "fixed_riders": 10,
+      "fixed_orders": 100,
+      "assignments": 40,
+      "repeats": 3
+    },
+    "sensitivity": {
+      "sigmas": [0.0, 0.15, 0.3, 0.5, 0.7],
+      "scenario": "peak",
+      "n_seeds": 20,
+      "methods": ["dfpr", "static_priority", "nearest", "shortest_path", "fifo"]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "weights": {
+    "u": 0.5034,
+    "f": 0.0459,
+    "w": 1.798,
+    "d": 0.4775,
+    "c": 2.3048,
+    "r": 2.1644
+  },
+  "candidate": 54,
+  "objective": 22.885726068555915,
+  "objective_definition": {
+    "late_pct": 1.0,
+    "avg_delivery_min": 1.0
+  },
+  "equal_weights_objective": 26.410943030511095,
+  "dev_seeds": [
+    0,
+    10
+  ],
+  "scenarios": [
+    "normal",
+    "peak"
+  ],
+  "candidates_evaluated": 61
+}

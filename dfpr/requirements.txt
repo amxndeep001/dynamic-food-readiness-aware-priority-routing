@@ -1,0 +1,12 @@
+# Core (Python 3.11+)
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+pytest>=7.0
+# Demo app (streamlit run app/app.py)
+streamlit>=1.37
+plotly>=5.20
+# Optional: kaleido (+ Chrome) lets "Export run report" also save PNG files
+# Test-only cross-checks (those tests are skipped if missing)
+networkx>=3.0
+scipy>=1.10
